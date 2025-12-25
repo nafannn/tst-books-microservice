@@ -4,14 +4,16 @@ const bookController = require("../controllers/bookController");
 
 // Fungsi middleware untuk cek API Key
 const authMiddleware = (req, res, next) => {
-  const apiKey = req.headers['x-api-key'];
+  const apiKey = req.headers['x-api-key'] || req.query.apiKey;
   if (!apiKey || apiKey !== process.env.API_KEY) {
-    return res.status(401).json({ status: 'error', message: 'Unauthorized: API Key diperlukan' });
+    return res.status(401).json({
+      status: 'error',
+      message: 'Unauthorized: API Key diperlukan'
+    });
   }
-  next(); // Lanjut ke controller jika key benar
+  next();
 };
 
-// Pasang middleware di semua route buku
 router.use(authMiddleware);
 
 router.get("/", bookController.getAllBooks);

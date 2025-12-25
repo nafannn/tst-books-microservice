@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Layanan Database
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # Layanan API (Microservice Buku)
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      API_KEY: ${API_KEY}
+      DB_PORT: 3306
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

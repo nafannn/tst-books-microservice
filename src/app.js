@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
     authentication: {
       type: "API Key Required",
       methods: ["Headers: x-api-key", "Query: ?apiKey="],
-      key_preview: "BOOK-KEY-UASTST***"
     },
     deployment: {
       environment: "STB Armbian - Docker Container",

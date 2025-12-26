@@ -12,7 +12,7 @@ const Book = {
     let params = [];
 
     // Fitur Search (Judul, Author atau Tags)
-    if (search)
+    if (search) {
       query += " AND (title LIKE ? OR author LIKE ? OR tags LIKE ?)";
       params.push(`%${search}%`, `%${search}%`,`%${search}%`);
     }

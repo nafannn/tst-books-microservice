@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     endpoints: {
       allBooks: "GET /books?apiKey=...",
       pagination: "GET /books?page=2&apiKey=...",
-      search: "GET /books?search=judul_atau_author&apiKey=...",
+      search: "GET /books?search=title_author_or_tags&apiKey=...",
       filterGenre: "GET /books?genre=Fiction&apiKey=...",
       topRated: "GET /books?top_rated=true&apiKey=..."
     },

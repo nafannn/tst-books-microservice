@@ -7,14 +7,14 @@ const Book = {
     const safeLimit = parseInt(limit) || 10;
     const safeOffset = parseInt(offset) || 0;
 
-    // Menampilkan kolom title, author, genre, description, page_count
-    let query = "SELECT title, author, genre, description, page_count, rating FROM books WHERE 1=1";
+    // Menampilkan data buku
+    let query = "SELECT title, author, genre, rating FROM books WHERE 1=1";
     let params = [];
 
-    // Fitur Search (Judul atau Author)
-    if (search) {
-      query += " AND (title LIKE ? OR author LIKE ?)";
-      params.push(`%${search}%`, `%${search}%`);
+    // Fitur Search (Judul, Author atau Tags)
+    if (search)
+      query += " AND (title LIKE ? OR author LIKE ? OR tags LIKE ?)";
+      params.push(`%${search}%`, `%${search}%`,`%${search}%`);
     }
 
     // Filter Genre

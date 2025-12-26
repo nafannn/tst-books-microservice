@@ -7,6 +7,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 // Import routes
 const bookRoutes = require("./routes/bookRoutes");
 
@@ -36,5 +40,6 @@ app.get("/", (req, res) => {
 });
 
 // Endpoint
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/books", bookRoutes);
 module.exports = app;

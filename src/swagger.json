@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Book Catalog API Documentation",
+    "version": "1.0.0",
+    "description": "Advanced Microservice with Automated Pagination & Search. Deployed on STB Armbian using Docker Containers."
+  },
+  "servers": [
+    {
+      "url": "https://nafa.otwdochub.my.id",
+      "description": "Production Server (STB Armbian)"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Masukkan API Key di sini jika menggunakan Header"
+      },
+      "QueryKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apiKey",
+        "description": "Masukkan API Key di sini jika menggunakan Query Parameter"
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Health Check & API Info",
+        "description": "Melihat status layanan, informasi deployment, dan ringkasan endpoint.",
+        "responses": {
+          "200": { "description": "Informasi layanan berhasil diambil" }
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "summary": "Mendapatkan Daftar Buku",
+        "description": "Endpoint utama untuk mengakses katalog buku dengan fitur search, filter, dan pagination.",
+        "security": [
+          { "ApiKeyAuth": [] },
+          { "QueryKeyAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "API Key untuk autentikasi (Jika tidak melalui header)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Cari berdasarkan Judul atau Author",
+            "schema": { "type": "string" },
+            "example": "Harry Potter"
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "description": "Filter berdasarkan kategori genre",
+            "schema": { "type": "string" },
+            "example": "Fiction"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Nomor halaman (Otomatis menghitung offset)",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "top_rated",
+            "in": "query",
+            "description": "Urutkan berdasarkan rating tertinggi",
+            "schema": { "type": "string", "enum": ["true", "false"] }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Data berhasil ditemukan" },
+          "401": { "description": "Unauthorized: API Key salah atau tidak ada" }
+        }
+      }
+    }
+  }
+}

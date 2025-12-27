@@ -8,7 +8,7 @@ const Book = {
     const safeOffset = parseInt(offset) || 0;
 
     // Menampilkan data buku
-    let query = "SELECT title, author, genre, rating FROM books WHERE 1=1";
+    let query = "SELECT id, title, author, genre, rating FROM books WHERE 1=1";
     let params = [];
 
     // Fitur Search (Judul, Author atau Tags)

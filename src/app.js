@@ -40,6 +40,6 @@ app.get("/", (req, res) => {
 });
 
 // Endpoint
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve,swaggerUi.setup(swaggerDocument, {customSiteTitle: "Book Catalog API Documentation"}));
 app.use("/books", bookRoutes);
 module.exports = app;

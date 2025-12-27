@@ -3,12 +3,22 @@
   "info": {
     "title": "Book Catalog API Documentation",
     "version": "1.0.0",
-    "description": "Advanced Microservice with Automated Pagination & Search. Deployed on STB Armbian using Docker Containers."
+    "description": "Book Catalog Microservice with Automated Pagination & Search. Deployed on STB Armbian using Docker Containers."
   },
   "servers": [
     {
       "url": "https://nafa.otwdochub.my.id",
       "description": "Production Server (STB Armbian)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Book Catalog",
+      "description": "Endpoint utama untuk manajemen katalog buku"
+    },
+    {
+      "name": "System Health",
+      "description": "Informasi status layanan"
     }
   ],
   "components": {
@@ -30,6 +40,7 @@
   "paths": {
     "/": {
       "get": {
+        "tags": ["System Health"],
         "summary": "Health Check & API Info",
         "description": "Melihat status layanan, informasi deployment, dan ringkasan endpoint.",
         "responses": {
@@ -39,6 +50,7 @@
     },
     "/books": {
       "get": {
+        "tags": ["Book Catalog"],
         "summary": "Mendapatkan Daftar Buku",
         "description": "Endpoint utama untuk mengakses katalog buku dengan fitur search (Judul, Author, Tags), filter genre, dan pagination.",
         "security": [
@@ -87,6 +99,7 @@
     },
     "/books/{id}": {
       "get": {
+        "tags": ["Book Catalog"],
         "summary": "Mendapatkan Detail Buku Berdasarkan ID",
         "description": "Mengambil informasi lengkap satu buku menggunakan ID unik dari database.",
         "security": [

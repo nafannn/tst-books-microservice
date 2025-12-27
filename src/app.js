@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   res.json({
     name: "Book Catalog API",
     version: "1.0.0",
-    description: "Advanced Microservice with Automated Pagination & Search",
+    description: "Book Catalog Microservice with Automated Pagination & Search",
     endpoints: {
       allBooks: "GET /books?apiKey=...",
       pagination: "GET /books?page=2&apiKey=...",

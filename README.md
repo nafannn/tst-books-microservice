@@ -48,7 +48,7 @@ x-api-key: API_KEY
 | Health Check | `GET /` | Menampilkan status layanan dan daftar endpoint |
 | Daftar Buku | `GET /books` | Mengambil seluruh data buku |
 | Pagination | `GET /books?page=n` | Menampilkan data buku per halaman (10 data per halaman) |
-| Pencarian | `GET /books?search=keyword` | Mencari buku berdasarkan judul atau penulis |
+| Pencarian | `GET /books?search=keyword` | Mencari buku berdasarkan judul, penulis, atau tag |
 | Filter Genre | `GET /books?genre=fiction` | Mencari buku berdasarkan genre |
 | Rating Tertinggi | `GET /books?top_rated=true` | Mengurutkan buku berdasarkan rating tertinggi |
 

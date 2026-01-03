@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Deskripsi Layanan
+## 1. Deskripsi Layanan 📚
 
 Book Catalog Microservice merupakan layanan berbasis *microservice architecture* yang berfungsi untuk mengelola dan menyediakan data katalog buku. Layanan ini dikembangkan menggunakan **Node.js** dengan **MySQL** sebagai basis data, serta dideploy menggunakan **Docker** di atas infrastruktur **STB Armbian**.
 
@@ -17,7 +17,7 @@ Sebagai bagian dari sistem terintegrasi, layanan ini berperan sebagai *data prov
 
 ---
 
-## 2. Akses Layanan
+## 2. Akses Layanan 🌐
 
 Layanan dapat diakses melalui endpoint publik berikut:
 https://nafa.otwdochub.my.id/
@@ -25,7 +25,7 @@ Seluruh endpoint tersedia di bawah domain tersebut dan dapat diakses menggunakan
 
 ---
 
-## 3. Autentikasi dan Keamanan
+## 3. Autentikasi dan Keamanan 🔐
 
 Layanan ini menggunakan **API Key Authentication** untuk menjaga keamanan akses.
 
@@ -37,35 +37,36 @@ x-api-key: API_KEY
 ### 🔹 Melalui Query Parameter
 ?apiKey=API_KEY
 
-> **Catatan:** API Key tidak bersifat publik.
+> 🔐 **Catatan:** API Key tidak bersifat publik.
 
 ---
 
-## 4. Daftar Endpoint dan Fungsionalitas
+## 4. Daftar Endpoint dan Fungsionalitas 📌
 
 | Fitur | Endpoint | Deskripsi |
 |------|----------|-----------|
 | Health Check | `GET /` | Menampilkan status layanan dan daftar endpoint |
 | Daftar Buku | `GET /books` | Mengambil seluruh data buku |
-| Pagination | `GET /books?page=n` | Menampilkan data buku per halaman (10 data per halaman) |
-| Pencarian | `GET /books?search=keyword` | Mencari buku berdasarkan judul atau penulis |
-| Filter Genre | `GET /books?genre=fiction` | Mencari buku berdasarkan genre |
+| Pagination | `GET /books?page={n}` | Menampilkan data buku per halaman (10 data per halaman) |
+| Pencarian | `GET /books?search={keyword}` | Mencari buku berdasarkan judul, penulis, atau tag |
+| Filter Genre | `GET /books?genre={genre}` | Mencari buku berdasarkan genre |
 | Rating Tertinggi | `GET /books?top_rated=true` | Mengurutkan buku berdasarkan rating tertinggi |
+| Detail Buku | `GET /books/{id}` | Menampilkan detail buku berdasarkan id |
 
 ---
 
-## 5. Contoh Request
+## 5. Contoh Request 📎
 
 Contoh pemanggilan API menggunakan browser atau tools seperti Postman:
 https://nafa.otwdochub.my.id/books?apiKey=API_KEY&search=little
 
 ---
 
-## 6. Format Respon
+## 6. Format Respon 📦
 
 Layanan akan mengembalikan data dalam format **JSON**.
 
 ### Contoh Status Respon:
-- **200 OK** → Permintaan berhasil dan data dikembalikan  
-- **401 Unauthorized** → API Key tidak valid atau tidak disertakan
-- **500 Internal Server Error** → Kegagalan pada koneksi basis data atau logika server
+- ✅ **200 OK** → Permintaan berhasil dan data dikembalikan  
+- ❌ **401 Unauthorized** → API Key tidak valid atau tidak disertakan
+- ⚠️ **500 Internal Server Error** → Kegagalan pada koneksi basis data atau logika server

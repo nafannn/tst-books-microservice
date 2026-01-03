@@ -6,7 +6,8 @@ const Book = {
     const safeLimit = parseInt(limit) || 10;
     const safeOffset = parseInt(offset) || 0;
 
-    let query = "SELECT title, author, genre, rating FROM books WHERE 1=1";
+    // Menampilkan data buku
+    let query = "SELECT id, title, author, genre, rating FROM books WHERE 1=1";
     let params = [];
 
     if (search) {

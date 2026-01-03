@@ -1,24 +1,23 @@
-const mysql = require("mysql2");
+const sqlite3 = require("sqlite3");
+const { open } = require("sqlite");
+const path = require("path");
 require("dotenv").config();
 
-const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  waitForConnections: true,
-  connectionLimit: 10
-}).promise(); 
+const dbPath = path.resolve(__dirname, "../data/database.sqlite");
 
-// Cek koneksi ke database
-db.getConnection()
-  .then((connection) => {
-    console.log("✅ Database Connected: Berhasil terhubung ke MySQL!");
-    connection.release();
-  })
-  .catch((err) => {
+const dbPromise = (async () => {
+  try {
+    const db = await open({
+      filename: dbPath,
+      driver: sqlite3.Database,
+    });
+
+    console.log("✅ Database Connected: Berhasil terhubung ke SQLite!");
+
+    return db;
+  } catch (err) {
     console.error("❌ Database Connection Error:", err.message);
-  });
+  }
+})();
 
-module.exports = db;
+module.exports = dbPromise;

@@ -1,16 +1,16 @@
 FROM node:18-alpine
 
-# Set folder kerja di dalam container
+RUN apk add --no-cache python3 make g++
+
 WORKDIR /app
 
-# Copy package.json dan install library
 COPY package*.json ./
 RUN npm install
 
-# Copy seluruh kodingan
 COPY . .
+
+RUN mkdir -p /app/data
 
 EXPOSE 3000
 
-# Jalankan aplikasi
 CMD ["node", "server.js"]

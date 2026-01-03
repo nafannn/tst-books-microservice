@@ -3,7 +3,7 @@ const { open } = require("sqlite");
 const path = require("path");
 require("dotenv").config();
 
-const dbPath = path.resolve(__dirname, "../data/database.sqlite");
+const dbPath = '/app/data/database.sqlite';
 
 const dbPromise = (async () => {
   try {

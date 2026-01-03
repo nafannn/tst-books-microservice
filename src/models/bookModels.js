@@ -30,3 +30,5 @@ const Book = {
     return await db.get("SELECT * FROM books WHERE id = ?", [id]);
   }
 };
+
+module.exports = Book;
